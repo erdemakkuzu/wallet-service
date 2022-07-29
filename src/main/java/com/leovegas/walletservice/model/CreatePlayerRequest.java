@@ -2,13 +2,12 @@ package com.leovegas.walletservice.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
-import com.sun.istack.NotNull;
 import lombok.Data;
 
 @Data
 public class CreatePlayerRequest {
 
-    @JsonProperty("player_name")
+    @JsonProperty("name")
     @JsonPropertyDescription("Player name of the account")
     private String name;
 

@@ -43,4 +43,22 @@ public class GlobalExceptionHandler {
 
         return new ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(InvalidCurrencyException.class)
+    public ResponseEntity<?> handleInvalidCurrencyException(InvalidCurrencyException invalidCurrencyException) {
+        ErrorDetails errorDetails = new ErrorDetails();
+        errorDetails.setErrorCode(ErrorMessageKeys.INVALID_CURRENCY);
+        errorDetails.setValue(invalidCurrencyException.getInvalidCurrency());
+
+        return new ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NegativeBalanceException.class)
+    public ResponseEntity<?> handleNegativeBalanceException(NegativeBalanceException negativeBalanceException) {
+        ErrorDetails errorDetails = new ErrorDetails();
+        errorDetails.setErrorCode(ErrorMessageKeys.NEGATIVE_BALANCE_NOT_ACCEPTED);
+        errorDetails.setValue(negativeBalanceException.getBalance().toString());
+
+        return new ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST);
+    }
 }

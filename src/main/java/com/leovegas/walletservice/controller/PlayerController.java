@@ -3,6 +3,7 @@ package com.leovegas.walletservice.controller;
 import com.leovegas.walletservice.entity.Player;
 import com.leovegas.walletservice.model.CreatePlayerRequest;
 import com.leovegas.walletservice.model.CreatePlayerResponse;
+import com.leovegas.walletservice.model.GetPlayerResponse;
 import com.leovegas.walletservice.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,12 +18,12 @@ public class PlayerController {
     @Autowired
     PlayerService playerService;
 
-    @GetMapping(value = "/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Player> getPlayer(@PathVariable("name") final String playerName){
+    @GetMapping(value = "/{playerName}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<GetPlayerResponse> getPlayer(@PathVariable("playerName") final String playerName){
         return ResponseEntity.ok(playerService.getPlayer(playerName));
     }
 
-    @PostMapping
+    @PostMapping( produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<CreatePlayerResponse> createPlayer(@RequestBody CreatePlayerRequest createPlayerRequest){
         return new ResponseEntity(playerService.createPlayer(createPlayerRequest), HttpStatus.CREATED);
     }

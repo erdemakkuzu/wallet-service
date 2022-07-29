@@ -5,8 +5,10 @@ import com.leovegas.walletservice.exception.PlayerAlreadyExistsException;
 import com.leovegas.walletservice.exception.PlayerNotFoundException;
 import com.leovegas.walletservice.model.CreatePlayerRequest;
 import com.leovegas.walletservice.model.CreatePlayerResponse;
+import com.leovegas.walletservice.model.GetPlayerResponse;
 import com.leovegas.walletservice.repository.PlayerRepository;
 import com.leovegas.walletservice.repository.WalletRepository;
+import com.leovegas.walletservice.util.MapperUtils;
 import com.leovegas.walletservice.util.PlayerUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,15 +29,15 @@ public class PlayerService {
         this.walletRepository = walletRepository;
     }
 
-    public Player getPlayer(String playerName){
-        PlayerUtils.validateGetPlayerRequest(playerName);
+    public GetPlayerResponse getPlayer(String playerName){
+        PlayerUtils.validatePlayerPathVariable(playerName);
         Player player = playerRepository.findByName(playerName);
 
         if(player == null){
             throw new PlayerNotFoundException(playerName);
         }
 
-        return player;
+        return MapperUtils.mapToGetPlayerResponse(player);
     }
 
     @Transactional
