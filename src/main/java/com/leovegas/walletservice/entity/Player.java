@@ -3,6 +3,7 @@ package com.leovegas.walletservice.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -32,5 +33,8 @@ public class Player {
 
     @OneToMany(mappedBy = "player")
     private List<Wallet> walletList;
+
+    @Column(name = "created_date")
+    private Date createdDate;
 
 }
