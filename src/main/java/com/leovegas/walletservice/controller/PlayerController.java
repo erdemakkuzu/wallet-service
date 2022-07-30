@@ -1,7 +1,6 @@
 package com.leovegas.walletservice.controller;
 
 import com.leovegas.walletservice.constant.Operations;
-import com.leovegas.walletservice.entity.Player;
 import com.leovegas.walletservice.model.CreatePlayerRequest;
 import com.leovegas.walletservice.model.CreatePlayerResponse;
 import com.leovegas.walletservice.model.GetPlayerResponse;
@@ -20,9 +19,9 @@ import java.util.List;
 public class PlayerController {
 
     PlayerService playerService;
-    @Autowired
 
-    PlayerController(PlayerService playerService){
+    @Autowired
+    PlayerController(PlayerService playerService) {
         this.playerService = playerService;
     }
 
