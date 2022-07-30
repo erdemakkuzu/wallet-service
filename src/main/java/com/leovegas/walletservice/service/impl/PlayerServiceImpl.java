@@ -11,6 +11,8 @@ import com.leovegas.walletservice.repository.WalletRepository;
 import com.leovegas.walletservice.service.PlayerService;
 import com.leovegas.walletservice.util.MapperUtils;
 import com.leovegas.walletservice.util.PlayerUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class PlayerServiceImpl implements PlayerService {
+
+    private final Logger logger = LoggerFactory.getLogger(PlayerServiceImpl.class);
 
     PlayerRepository playerRepository;
     WalletRepository walletRepository;
@@ -33,10 +37,11 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     public GetPlayerResponse getPlayer(String name) {
-        PlayerUtils.validatePlayerPathVariable(name);
+        PlayerUtils.validatePlayerNameLength(name);
         Player player = playerRepository.findByName(name);
 
         if (player == null) {
+            logger.error("Player not found. Player name:" + name);
             throw new PlayerNotFoundException(name);
         }
 
@@ -49,6 +54,7 @@ public class PlayerServiceImpl implements PlayerService {
 
         Player existedPlayer = playerRepository.findByName(createPlayerRequest.getName());
         if (existedPlayer != null) {
+            logger.error("Player already exists: " + createPlayerRequest.getName());
             throw new PlayerAlreadyExistsException(createPlayerRequest.getName());
         }
 

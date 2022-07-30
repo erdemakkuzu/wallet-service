@@ -12,6 +12,8 @@ import com.leovegas.walletservice.service.WalletService;
 import com.leovegas.walletservice.util.MapperUtils;
 import com.leovegas.walletservice.util.PlayerUtils;
 import com.leovegas.walletservice.util.WalletUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,8 @@ import java.util.Optional;
 
 @Service
 public class WalletServiceImpl implements WalletService {
+
+    private final Logger logger = LoggerFactory.getLogger(WalletServiceImpl.class);
 
     WalletRepository walletRepository;
     PlayerRepository playerRepository;
@@ -39,12 +43,13 @@ public class WalletServiceImpl implements WalletService {
     @Transactional
     public CreateWalletResponse createWallet(String playerName,
                                              CreateWalletRequest createWalletRequest) {
-        PlayerUtils.validatePlayerPathVariable(playerName);
+        PlayerUtils.validatePlayerNameLength(playerName);
         WalletUtils.validateCreateWalletRequest(createWalletRequest);
 
         Player player = playerRepository.findByName(playerName);
 
         if (player == null) {
+            logger.error("Player not found. Player name:" + playerName);
             throw new PlayerNotFoundException(playerName);
         }
 
@@ -88,6 +93,7 @@ public class WalletServiceImpl implements WalletService {
         Double requestAmount = performTransactionRequest.getAmount();
 
         if (walletBalance < requestAmount) {
+            logger.error("Wallet does not have enough balance: " + wallet.getBalance().toString());
             throw new NotEnoughBalanceException(wallet.getBalance().toString());
         }
 
@@ -107,16 +113,19 @@ public class WalletServiceImpl implements WalletService {
         Optional<Wallet> wallet = walletRepository.findById(walletId);
 
         if (wallet.isEmpty()) {
+            logger.error("Wallet not found with given id : " + walletId);
             throw new WalletNotFoundException(walletId);
         }
 
         Transaction existedTransaction = transactionRepository.findByHashId(performTransactionRequest.getHashId());
 
         if (existedTransaction != null) {
+            logger.error("Transaction id is not unique : " + performTransactionRequest.getHashId());
             throw new NonUniqueTransactionHashIdException(performTransactionRequest.getHashId());
         }
 
         if (!performTransactionRequest.getCurrency().equals(wallet.get().getCurrency())) {
+            logger.error("Currency of the wallet doesn't match with transaction's currency : " + performTransactionRequest.getCurrency());
             throw new CurrencyMisMatchException(performTransactionRequest.getCurrency());
         }
         return wallet.get();
@@ -126,6 +135,7 @@ public class WalletServiceImpl implements WalletService {
         Optional<Wallet> wallet = walletRepository.findById(walletId);
 
         if (wallet.isEmpty()) {
+            logger.error("Wallet not found with given id : " + walletId);
             throw new WalletNotFoundException(walletId);
         }
 
