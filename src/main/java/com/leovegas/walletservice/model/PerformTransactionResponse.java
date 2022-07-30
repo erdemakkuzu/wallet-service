@@ -9,8 +9,8 @@ public class PerformTransactionResponse {
     @JsonProperty("walletId")
     private Long walletId;
 
-    @JsonProperty("hash_id")
-    private String hashId;
+    @JsonProperty("transaction_hash_id")
+    private String transaction_hash_id;
 
     @JsonProperty("currency")
     private String currency;
