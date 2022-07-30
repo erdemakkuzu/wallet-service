@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PlayerService {
@@ -64,5 +66,14 @@ public class PlayerService {
         createdPlayer.setCreatedDate(new Date());
 
         return playerRepository.save(createdPlayer);
+    }
+
+    public List<GetPlayerResponse> getPlayers() {
+        List<Player> players = playerRepository.findAll();
+
+        return players.stream()
+                .map(MapperUtils::mapToGetPlayerResponse)
+                .collect(Collectors.toList());
+
     }
 }

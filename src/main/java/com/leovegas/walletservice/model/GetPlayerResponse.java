@@ -26,4 +26,7 @@ public class GetPlayerResponse {
     @JsonProperty("wallets")
     private List<GetWalletResponse> walletList;
 
+    @JsonProperty("total_balance")
+    private List<Balance> totalBalanceList;
+
 }

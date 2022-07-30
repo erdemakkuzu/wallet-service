@@ -1,6 +1,6 @@
 package com.leovegas.walletservice.constans;
 
-public class FieldNames {
+public class FieldKeys {
     // Player field names
     public static String PLAYER_NAME = "name";
     public static String PLAYER_FIRST_NAME = "first_name";

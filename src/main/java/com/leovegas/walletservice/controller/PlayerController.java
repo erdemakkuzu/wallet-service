@@ -11,8 +11,10 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/player")
+@RequestMapping("/api/player")
 public class PlayerController {
 
     @Autowired
@@ -21,6 +23,11 @@ public class PlayerController {
     @GetMapping(value = "/{playerName}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<GetPlayerResponse> getPlayer(@PathVariable("playerName") final String playerName){
         return ResponseEntity.ok(playerService.getPlayer(playerName));
+    }
+
+    @GetMapping(value = "/players", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<GetPlayerResponse>> getPlayers(){
+        return ResponseEntity.ok(playerService.getPlayers());
     }
 
     @PostMapping( produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
