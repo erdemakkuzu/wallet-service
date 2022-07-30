@@ -52,4 +52,4 @@ http://localhost:8080/swagger-ui.html
 
 ## Database Design
 
-![](src/resources/walletServiceDbSchema.png)
+![](https://ibb.co/MRY1kPL)
