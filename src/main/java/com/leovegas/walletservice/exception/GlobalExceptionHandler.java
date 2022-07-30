@@ -23,7 +23,7 @@ public class GlobalExceptionHandler {
         errorDetails.setErrorCode(ErrorMessageKeys.FIELD_CANT_BE_NULL);
         errorDetails.setField(nullFieldException.getFieldName());
 
-        return new ResponseEntity(errorDetails, HttpStatus.NOT_FOUND);
+        return new ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST);
 
     }
 
@@ -98,6 +98,6 @@ public class GlobalExceptionHandler {
         errorDetails.setValue(walletNotFoundException.getWalletId().toString());
         errorDetails.setField(FieldKeys.WALLET_ID);
 
-        return new ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity(errorDetails, HttpStatus.NOT_FOUND);
     }
 }
