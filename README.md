@@ -45,7 +45,7 @@ docker run -p 8080:8080 wallet-service.jar
 ```
 
 
-When you click on the link below, you should be accessing the swagger API documentation.
+By clicking the link below, you should be accessing the swagger API documentation.
 ```bash
 http://localhost:8080/swagger-ui.html
 ```
