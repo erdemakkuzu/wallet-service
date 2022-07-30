@@ -31,7 +31,7 @@ public class Wallet {
     @ManyToOne
     private Player player;
 
-    @OneToMany(mappedBy = "wallet")
+    @OneToMany(mappedBy = "wallet", fetch = FetchType.LAZY)
     private List<Transaction> transactionList;
 
 }

@@ -31,7 +31,7 @@ public class Player {
     @Column(name = "gender")
     private String gender;
 
-    @OneToMany(mappedBy = "player")
+    @OneToMany(mappedBy = "player", fetch = FetchType.LAZY)
     private List<Wallet> walletList;
 
     @Column(name = "created_date")

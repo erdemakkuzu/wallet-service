@@ -33,6 +33,6 @@ public class Transaction {
     @Column(name = "currency")
     private String currency;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Wallet wallet;
 }
