@@ -33,12 +33,6 @@ public class Transaction {
     @Column(name = "currency")
     private String currency;
 
-    @Column(name = "status")
-    private String status;
-
-    @Column(name = "fail_reason")
-    private String failReason;
-
     @ManyToOne
     private Wallet wallet;
 }

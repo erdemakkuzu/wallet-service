@@ -1,6 +1,7 @@
 package com.leovegas.walletservice.util;
 
 import com.leovegas.walletservice.entity.Player;
+import com.leovegas.walletservice.entity.Transaction;
 import com.leovegas.walletservice.entity.Wallet;
 import com.leovegas.walletservice.model.*;
 
@@ -70,5 +71,16 @@ public class MapperUtils {
     private static void addToTotalBalanceMap(Map<String, Double> totalBalanceMap,
                                              Wallet wallet) {
         totalBalanceMap.merge(wallet.getCurrency(), wallet.getBalance(), Double::sum);
+    }
+
+    public static TransactionResponse mapToTransactionResponse(Transaction transaction){
+        TransactionResponse transactionResponse = new TransactionResponse();
+        transactionResponse.setHashId(transaction.getHash());
+        transactionResponse.setType(transaction.getType());
+        transactionResponse.setAmount(transaction.getAmount());
+        transactionResponse.setCurrency(transaction.getCurrency());
+        transactionResponse.setDate(transaction.getDate());
+        transactionResponse.setNote(transaction.getNote());
+        return transactionResponse;
     }
 }

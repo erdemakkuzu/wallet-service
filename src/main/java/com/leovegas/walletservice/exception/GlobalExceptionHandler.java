@@ -1,5 +1,6 @@
 package com.leovegas.walletservice.exception;
 
+import com.leovegas.walletservice.constans.FieldKeys;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -58,6 +59,43 @@ public class GlobalExceptionHandler {
         ErrorDetails errorDetails = new ErrorDetails();
         errorDetails.setErrorCode(ErrorMessageKeys.NEGATIVE_BALANCE_NOT_ACCEPTED);
         errorDetails.setValue(negativeBalanceException.getBalance().toString());
+
+        return new ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NonUniqueTransactionHashIdException.class)
+    public ResponseEntity<?> handleNonUniqueTransactionHashIdException(NonUniqueTransactionHashIdException nonUniqueTransactionHashIdException) {
+        ErrorDetails errorDetails = new ErrorDetails();
+        errorDetails.setErrorCode(ErrorMessageKeys.NON_UNIQUE_TRANSACTION_HASH_ID);
+        errorDetails.setValue(nonUniqueTransactionHashIdException.getTransactionHashId());
+
+        return new ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(CurrencyMisMatchException.class)
+    public ResponseEntity<?> handleCurrencyMisMatchException(CurrencyMisMatchException currencyMisMatchException) {
+        ErrorDetails errorDetails = new ErrorDetails();
+        errorDetails.setErrorCode(ErrorMessageKeys.CURRENCY_MISMATCH);
+        errorDetails.setValue(currencyMisMatchException.getMismatchCurrency());
+
+        return new ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NotEnoughBalanceException.class)
+    public ResponseEntity<?> handleNotEnoughBalanceException(NotEnoughBalanceException notEnoughBalanceException) {
+        ErrorDetails errorDetails = new ErrorDetails();
+        errorDetails.setErrorCode(ErrorMessageKeys.NOT_ENOUGH_BALANCE);
+        errorDetails.setDetails("Wallet balance : " + notEnoughBalanceException.getWalletBalance());
+
+        return new ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(WalletNotFoundException.class)
+    public ResponseEntity<?> handleWalletNotFoundException(WalletNotFoundException walletNotFoundException) {
+        ErrorDetails errorDetails = new ErrorDetails();
+        errorDetails.setErrorCode(ErrorMessageKeys.WALLET_NOT_FOUND);
+        errorDetails.setValue(walletNotFoundException.getWalletId().toString());
+        errorDetails.setField(FieldKeys.WALLET_ID);
 
         return new ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST);
     }

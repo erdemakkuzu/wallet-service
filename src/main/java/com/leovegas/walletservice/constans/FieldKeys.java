@@ -9,4 +9,6 @@ public class FieldKeys {
     //Wallet field names
     public static String WALLET_NAME = "name";
     public static String CURRENCY_CODE = "currency";
+    public static String HASH_ID = "hash_id";
+    public static String WALLET_ID = "wallet_id";
 }
