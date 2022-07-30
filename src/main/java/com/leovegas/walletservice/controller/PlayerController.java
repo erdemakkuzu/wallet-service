@@ -24,19 +24,19 @@ public class PlayerController {
 
     @GetMapping(value = "/{playerName}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = Operations.GET_PLAYER)
-    public ResponseEntity<GetPlayerResponse> getPlayer(@PathVariable("playerName") final String playerName){
+    public ResponseEntity<GetPlayerResponse> getPlayer(@PathVariable("playerName") final String playerName) {
         return ResponseEntity.ok(playerService.getPlayer(playerName));
     }
 
     @GetMapping(value = "/players", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = Operations.GET_PLAYERS)
-    public ResponseEntity<List<GetPlayerResponse>> getPlayers(){
+    public ResponseEntity<List<GetPlayerResponse>> getPlayers() {
         return ResponseEntity.ok(playerService.getPlayers());
     }
 
-    @PostMapping( produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = Operations.CREATE_PLAYER)
-    public ResponseEntity<CreatePlayerResponse> createPlayer(@RequestBody CreatePlayerRequest createPlayerRequest){
+    public ResponseEntity<CreatePlayerResponse> createPlayer(@RequestBody CreatePlayerRequest createPlayerRequest) {
         return new ResponseEntity(playerService.createPlayer(createPlayerRequest), HttpStatus.CREATED);
     }
 

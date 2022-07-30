@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class CurrencyMisMatchException extends RuntimeException{
+public class CurrencyMisMatchException extends RuntimeException {
     private String mismatchCurrency;
 }

@@ -1,12 +1,10 @@
 package com.leovegas.walletservice.exception;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
-public class WalletNotFoundException extends RuntimeException{
-    private  Long walletId;
+public class WalletNotFoundException extends RuntimeException {
+    private Long walletId;
 }

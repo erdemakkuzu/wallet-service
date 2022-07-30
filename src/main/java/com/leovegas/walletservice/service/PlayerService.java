@@ -31,11 +31,11 @@ public class PlayerService {
         this.walletRepository = walletRepository;
     }
 
-    public GetPlayerResponse getPlayer(String playerName){
+    public GetPlayerResponse getPlayer(String playerName) {
         PlayerUtils.validatePlayerPathVariable(playerName);
         Player player = playerRepository.findByName(playerName);
 
-        if(player == null){
+        if (player == null) {
             throw new PlayerNotFoundException(playerName);
         }
 
@@ -47,7 +47,7 @@ public class PlayerService {
         PlayerUtils.validateCreatePlayerRequest(createPlayerRequest);
 
         Player existedPlayer = playerRepository.findByName(createPlayerRequest.getName());
-        if(existedPlayer != null){
+        if (existedPlayer != null) {
             throw new PlayerAlreadyExistsException(createPlayerRequest.getName());
         }
 

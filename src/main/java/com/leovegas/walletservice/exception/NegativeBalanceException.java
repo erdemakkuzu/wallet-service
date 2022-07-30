@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class NegativeBalanceException extends RuntimeException{
+public class NegativeBalanceException extends RuntimeException {
     private Double balance;
 }

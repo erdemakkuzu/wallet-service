@@ -73,7 +73,7 @@ public class MapperUtils {
         totalBalanceMap.merge(wallet.getCurrency(), wallet.getBalance(), Double::sum);
     }
 
-    public static TransactionResponse mapToTransactionResponse(Transaction transaction){
+    public static TransactionResponse mapToTransactionResponse(Transaction transaction) {
         TransactionResponse transactionResponse = new TransactionResponse();
         transactionResponse.setHashId(transaction.getHash());
         transactionResponse.setType(transaction.getType());

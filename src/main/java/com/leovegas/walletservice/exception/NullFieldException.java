@@ -1,11 +1,11 @@
 package com.leovegas.walletservice.exception;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
-public class NullFieldException extends RuntimeException{
+public class NullFieldException extends RuntimeException {
     private String fieldName;
 }

@@ -29,7 +29,7 @@ public class WalletService {
     @Autowired
     WalletService(WalletRepository walletRepository,
                   PlayerRepository playerRepository,
-                  TransactionRepository transactionRepository){
+                  TransactionRepository transactionRepository) {
         this.walletRepository = walletRepository;
         this.playerRepository = playerRepository;
         this.transactionRepository = transactionRepository;
@@ -43,17 +43,17 @@ public class WalletService {
 
         Player player = playerRepository.findByName(playerName);
 
-        if(player == null){
+        if (player == null) {
             throw new PlayerNotFoundException(playerName);
         }
 
-        Wallet wallet = saveWallet(createWalletRequest,player);
+        Wallet wallet = saveWallet(createWalletRequest, player);
 
         return MapperUtils.mapToCreateWalletResponse(wallet, player.getName());
     }
 
     private Wallet saveWallet(CreateWalletRequest createWalletRequest,
-                              Player player){
+                              Player player) {
         Wallet wallet = new Wallet();
         wallet.setName(createWalletRequest.getName());
         wallet.setBalance(createWalletRequest.getBalance() != null ? createWalletRequest.getBalance() : 0.0);
@@ -66,7 +66,7 @@ public class WalletService {
 
     @Transactional
     public PerformTransactionResponse performCredit(Long walletId,
-                                             PerformTransactionRequest performTransactionRequest) {
+                                                    PerformTransactionRequest performTransactionRequest) {
         Wallet wallet = validateTransactionRequestAndGetWallet(walletId, performTransactionRequest);
 
         Transaction transaction = populateTransactionFields(performTransactionRequest, wallet, TransactionType.CRE);
@@ -80,10 +80,10 @@ public class WalletService {
 
     @Transactional
     public PerformTransactionResponse performDebit(Long walletId,
-                                                    PerformTransactionRequest performTransactionRequest) {
+                                                   PerformTransactionRequest performTransactionRequest) {
         Wallet wallet = validateTransactionRequestAndGetWallet(walletId, performTransactionRequest);
 
-        if(wallet.getBalance() < performTransactionRequest.getAmount()){
+        if (wallet.getBalance() < performTransactionRequest.getAmount()) {
             throw new NotEnoughBalanceException(wallet.getBalance().toString());
         }
 
@@ -120,7 +120,7 @@ public class WalletService {
 
     private Transaction populateTransactionFields(PerformTransactionRequest performTransactionRequest,
                                                   Wallet wallet,
-                                                  TransactionType transactionType){
+                                                  TransactionType transactionType) {
         Transaction transaction = new Transaction();
         transaction.setCurrency(performTransactionRequest.getCurrency());
         transaction.setAmount(performTransactionRequest.getAmount());
@@ -134,7 +134,7 @@ public class WalletService {
     }
 
     private PerformTransactionResponse populateTransactionResponse(Wallet wallet,
-                                                                   PerformTransactionRequest performTransactionRequest){
+                                                                   PerformTransactionRequest performTransactionRequest) {
         PerformTransactionResponse performTransactionResponse = new PerformTransactionResponse();
         performTransactionResponse.setWalletId(wallet.getId());
         performTransactionResponse.setCurrentBalance(wallet.getBalance());
@@ -147,14 +147,14 @@ public class WalletService {
     public WalletTransactionHistoryResponse getWalletTransactionHistory(Long walletId) {
         Optional<Wallet> wallet = walletRepository.findById(walletId);
 
-        if(wallet.isEmpty()){
+        if (wallet.isEmpty()) {
             throw new WalletNotFoundException(walletId);
         }
 
         return populateWalletTransactionHistoryResponse(wallet.get());
     }
 
-    private WalletTransactionHistoryResponse populateWalletTransactionHistoryResponse( Wallet wallet){
+    private WalletTransactionHistoryResponse populateWalletTransactionHistoryResponse(Wallet wallet) {
         WalletTransactionHistoryResponse walletTransactionHistoryResponse = new WalletTransactionHistoryResponse();
         walletTransactionHistoryResponse.setId(wallet.getId());
         walletTransactionHistoryResponse.setName(wallet.getName());

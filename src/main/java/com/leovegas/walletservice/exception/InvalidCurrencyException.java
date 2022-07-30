@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class InvalidCurrencyException extends RuntimeException{
+public class InvalidCurrencyException extends RuntimeException {
     private String invalidCurrency;
 }

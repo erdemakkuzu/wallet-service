@@ -5,6 +5,6 @@ import lombok.Data;
 
 @AllArgsConstructor
 @Data
-public class NotEnoughBalanceException extends RuntimeException{
+public class NotEnoughBalanceException extends RuntimeException {
     private String walletBalance;
 }
