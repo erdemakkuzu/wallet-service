@@ -18,7 +18,7 @@ import java.util.List;
 @RequestMapping("/api/player")
 public class PlayerController {
 
-    PlayerService playerService;
+    private final PlayerService playerService;
 
     @Autowired
     PlayerController(PlayerService playerService) {
@@ -40,7 +40,7 @@ public class PlayerController {
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = Operations.CREATE_PLAYER)
     public ResponseEntity<CreatePlayerResponse> createPlayer(@RequestBody final CreatePlayerRequest createPlayerRequest) {
-        return new ResponseEntity(playerService.createPlayer(createPlayerRequest), HttpStatus.CREATED);
+        return new ResponseEntity<>(playerService.createPlayer(createPlayerRequest), HttpStatus.CREATED);
     }
 
 

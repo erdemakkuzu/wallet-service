@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/wallet")
 public class WalletController {
 
-    private WalletService walletService;
+    private final WalletService walletService;
 
     @Autowired
     WalletController(WalletService walletService) {
@@ -25,26 +25,26 @@ public class WalletController {
     @ApiOperation(value = Operations.CREATE_WALLET)
     public ResponseEntity<CreateWalletResponse> createWallet(@PathVariable("playerName") final String playerName,
                                                              @RequestBody CreateWalletRequest createWalletRequest) {
-        return new ResponseEntity(walletService.createWallet(playerName, createWalletRequest), HttpStatus.CREATED);
+        return new ResponseEntity<>(walletService.createWallet(playerName, createWalletRequest), HttpStatus.CREATED);
     }
 
     @PostMapping(value = "/{walletId}/credit", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = Operations.CREDIT)
     public ResponseEntity<PerformTransactionResponse> performCredit(@PathVariable("walletId") final Long walletId,
                                                                     @RequestBody PerformTransactionRequest performTransactionRequest) {
-        return new ResponseEntity(walletService.performCredit(walletId, performTransactionRequest), HttpStatus.CREATED);
+        return new ResponseEntity<>(walletService.performCredit(walletId, performTransactionRequest), HttpStatus.CREATED);
     }
 
     @PostMapping(value = "/{walletId}/debit", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = Operations.DEBIT)
     public ResponseEntity<PerformTransactionResponse> performDebit(@PathVariable("walletId") final Long walletId,
                                                                    @RequestBody PerformTransactionRequest performTransactionRequest) {
-        return new ResponseEntity(walletService.performDebit(walletId, performTransactionRequest), HttpStatus.CREATED);
+        return new ResponseEntity<>(walletService.performDebit(walletId, performTransactionRequest), HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/{walletId}/transaction-history", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = Operations.TRANSACTION_HISTORY)
     public ResponseEntity<WalletTransactionHistoryResponse> getWalletTransactionHistory(@PathVariable("walletId") final Long walletId) {
-        return new ResponseEntity(walletService.getWalletTransactionHistory(walletId), HttpStatus.OK);
+        return new ResponseEntity<>(walletService.getWalletTransactionHistory(walletId), HttpStatus.OK);
     }
 }
