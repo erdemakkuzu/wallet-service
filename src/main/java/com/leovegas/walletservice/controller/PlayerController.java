@@ -40,7 +40,7 @@ public class PlayerController {
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = Operations.CREATE_PLAYER)
-    public ResponseEntity<CreatePlayerResponse> createPlayer(@RequestBody CreatePlayerRequest createPlayerRequest) {
+    public ResponseEntity<CreatePlayerResponse> createPlayer(@RequestBody final CreatePlayerRequest createPlayerRequest) {
         return new ResponseEntity(playerService.createPlayer(createPlayerRequest), HttpStatus.CREATED);
     }
 
