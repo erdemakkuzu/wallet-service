@@ -53,3 +53,12 @@ http://localhost:8080/swagger-ui.html
 ## Database Design
 
 ![Db Scema](/src/main/resources/walletServiceDbSchema.png "Db schema")
+
+You can examine the database structure and tables of the project from the diagram above.
+
+To keep things simple, the number of tables is limited to 3.
+
+Relationships between tables:
+1. **One player** can have **many wallets.**
+2. **One wallet** can have **many transactions.**
+
