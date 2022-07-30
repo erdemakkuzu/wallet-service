@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public interface PlayerService {
 
-    GetPlayerResponse getPlayer(String playerName);
+    GetPlayerResponse getPlayer(String name);
 
     List<GetPlayerResponse> getPlayers();
 

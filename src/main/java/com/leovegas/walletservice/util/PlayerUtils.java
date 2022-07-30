@@ -24,9 +24,9 @@ public class PlayerUtils {
 
     }
 
-    public static void validatePlayerPathVariable(String playerName) {
-        if (playerName.isEmpty() || playerName.isBlank()) {
-            throw new NullPlayerNameException(playerName);
+    public static void validatePlayerPathVariable(String name) {
+        if (name.isEmpty() || name.isBlank()) {
+            throw new NullPlayerNameException(name);
         }
     }
 

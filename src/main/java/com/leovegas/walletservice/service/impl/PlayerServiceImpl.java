@@ -32,12 +32,12 @@ public class PlayerServiceImpl implements PlayerService {
         this.walletRepository = walletRepository;
     }
 
-    public GetPlayerResponse getPlayer(String playerName) {
-        PlayerUtils.validatePlayerPathVariable(playerName);
-        Player player = playerRepository.findByName(playerName);
+    public GetPlayerResponse getPlayer(String name) {
+        PlayerUtils.validatePlayerPathVariable(name);
+        Player player = playerRepository.findByName(name);
 
         if (player == null) {
-            throw new PlayerNotFoundException(playerName);
+            throw new PlayerNotFoundException(name);
         }
 
         return MapperUtils.mapToGetPlayerResponse(player);

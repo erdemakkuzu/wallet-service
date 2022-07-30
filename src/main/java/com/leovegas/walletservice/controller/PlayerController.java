@@ -25,10 +25,10 @@ public class PlayerController {
         this.playerService = playerService;
     }
 
-    @GetMapping(value = "/{playerName}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = Operations.GET_PLAYER)
-    public ResponseEntity<GetPlayerResponse> getPlayer(@PathVariable("playerName") final String playerName) {
-        return ResponseEntity.ok(playerService.getPlayer(playerName));
+    public ResponseEntity<GetPlayerResponse> getPlayer(@PathVariable("name") final String name) {
+        return ResponseEntity.ok(playerService.getPlayer(name));
     }
 
     @GetMapping(value = "/players", produces = MediaType.APPLICATION_JSON_VALUE)
