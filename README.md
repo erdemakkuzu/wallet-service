@@ -24,7 +24,7 @@ git clone https://github.com/erdemakkuzu/wallet-service.git
 ```bash
 mvn clean package
 ```
-4. **wallet-service.jar** should have been created under  the target folder. Run the .jar file with the following command : 
+4. **wallet-service.jar** should have been created under  the target folder. Run the .jar file with the following command: 
 ```bash
 java -jar target/wallet-service.jar
 ```
@@ -49,3 +49,7 @@ When you click on the link below, you should be accessing the swagger API docume
 ```bash
 http://localhost:8080/swagger-ui.html
 ```
+
+## Database Design
+
+![](src/resources/walleServiceDbSchema.PNG)
