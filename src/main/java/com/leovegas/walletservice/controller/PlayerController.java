@@ -19,8 +19,12 @@ import java.util.List;
 @RequestMapping("/api/player")
 public class PlayerController {
 
-    @Autowired
     PlayerService playerService;
+    @Autowired
+
+    PlayerController(PlayerService playerService){
+        this.playerService = playerService;
+    }
 
     @GetMapping(value = "/{playerName}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = Operations.GET_PLAYER)
