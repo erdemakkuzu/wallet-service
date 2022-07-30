@@ -75,7 +75,7 @@ public class MapperUtils {
 
     public static TransactionResponse mapToTransactionResponse(Transaction transaction) {
         TransactionResponse transactionResponse = new TransactionResponse();
-        transactionResponse.setHashId(transaction.getHash());
+        transactionResponse.setHashId(transaction.getHashId());
         transactionResponse.setType(transaction.getType());
         transactionResponse.setAmount(transaction.getAmount());
         transactionResponse.setCurrency(transaction.getCurrency());

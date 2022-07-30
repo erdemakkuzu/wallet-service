@@ -32,6 +32,7 @@ public class GlobalExceptionHandler {
         ErrorDetails errorDetails = new ErrorDetails();
         errorDetails.setErrorCode(ErrorMessageKeys.PLAYER_ALREADY_EXISTS);
         errorDetails.setValue(playerAlreadyExistsException.getPlayerName());
+        errorDetails.setField(FieldKeys.PLAYER_NAME);
 
         return new ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST);
     }

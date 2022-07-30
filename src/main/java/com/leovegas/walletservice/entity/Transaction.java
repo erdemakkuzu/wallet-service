@@ -15,8 +15,8 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "hash", unique = true)
-    private String hash;
+    @Column(name = "hash_id", unique = true)
+    private String hashId;
 
     @Column(name="ammount")
     private Double amount;

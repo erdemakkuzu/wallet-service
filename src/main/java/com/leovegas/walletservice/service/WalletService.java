@@ -106,7 +106,7 @@ public class WalletService {
             throw new WalletNotFoundException(walletId);
         }
 
-        Transaction existedTransaction = transactionRepository.findByHash(performTransactionRequest.getHashId());
+        Transaction existedTransaction = transactionRepository.findByHashId(performTransactionRequest.getHashId());
 
         if (existedTransaction != null) {
             throw new NonUniqueTransactionHashIdException(performTransactionRequest.getHashId());
@@ -126,7 +126,7 @@ public class WalletService {
         transaction.setAmount(performTransactionRequest.getAmount());
         transaction.setDate(new Date());
         transaction.setWallet(wallet);
-        transaction.setHash(performTransactionRequest.getHashId());
+        transaction.setHashId(performTransactionRequest.getHashId());
         transaction.setNote(performTransactionRequest.getNote());
         transaction.setType(transactionType.getTransactionType());
 
