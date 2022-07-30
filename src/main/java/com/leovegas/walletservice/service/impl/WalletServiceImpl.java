@@ -70,13 +70,13 @@ public class WalletServiceImpl implements WalletService {
                                                     PerformTransactionRequest performTransactionRequest) {
         Wallet wallet = validateTransactionRequestAndGetWallet(walletId, performTransactionRequest);
 
-        Transaction transaction = populateTransactionFields(performTransactionRequest, wallet, TransactionType.CRE);
+        Transaction transaction = MapperUtils.mapToTransactionEntity(performTransactionRequest, wallet, TransactionType.CRE);
 
         wallet.setBalance(wallet.getBalance() + performTransactionRequest.getAmount());
 
         transactionRepository.save(transaction);
 
-        return populateTransactionResponse(wallet, performTransactionRequest);
+        return MapperUtils.toPerformTransactionResponse(wallet, performTransactionRequest);
     }
 
     @Transactional
@@ -84,17 +84,20 @@ public class WalletServiceImpl implements WalletService {
                                                    PerformTransactionRequest performTransactionRequest) {
         Wallet wallet = validateTransactionRequestAndGetWallet(walletId, performTransactionRequest);
 
-        if (wallet.getBalance() < performTransactionRequest.getAmount()) {
+        Double walletBalance = wallet.getBalance();
+        Double requestAmount = performTransactionRequest.getAmount();
+
+        if (walletBalance < requestAmount) {
             throw new NotEnoughBalanceException(wallet.getBalance().toString());
         }
 
-        Transaction transaction = populateTransactionFields(performTransactionRequest, wallet, TransactionType.DEBIT);
+        Transaction transaction = MapperUtils.mapToTransactionEntity(performTransactionRequest, wallet, TransactionType.DEBIT);
 
-        wallet.setBalance(wallet.getBalance() - performTransactionRequest.getAmount());
+        wallet.setBalance(walletBalance - requestAmount);
 
         transactionRepository.save(transaction);
 
-        return populateTransactionResponse(wallet, performTransactionRequest);
+        return MapperUtils.toPerformTransactionResponse(wallet, performTransactionRequest);
     }
 
     private Wallet validateTransactionRequestAndGetWallet(Long walletId,
@@ -117,32 +120,6 @@ public class WalletServiceImpl implements WalletService {
             throw new CurrencyMisMatchException(performTransactionRequest.getCurrency());
         }
         return wallet.get();
-    }
-
-    private Transaction populateTransactionFields(PerformTransactionRequest performTransactionRequest,
-                                                  Wallet wallet,
-                                                  TransactionType transactionType) {
-        Transaction transaction = new Transaction();
-        transaction.setCurrency(performTransactionRequest.getCurrency());
-        transaction.setAmount(performTransactionRequest.getAmount());
-        transaction.setDate(new Date());
-        transaction.setWallet(wallet);
-        transaction.setHashId(performTransactionRequest.getHashId());
-        transaction.setNote(performTransactionRequest.getNote());
-        transaction.setType(transactionType.getTransactionType());
-
-        return transaction;
-    }
-
-    private PerformTransactionResponse populateTransactionResponse(Wallet wallet,
-                                                                   PerformTransactionRequest performTransactionRequest) {
-        PerformTransactionResponse performTransactionResponse = new PerformTransactionResponse();
-        performTransactionResponse.setWalletId(wallet.getId());
-        performTransactionResponse.setCurrentBalance(wallet.getBalance());
-        performTransactionResponse.setCurrency(performTransactionRequest.getCurrency());
-        performTransactionResponse.setHashId(performTransactionRequest.getHashId());
-
-        return performTransactionResponse;
     }
 
     public WalletTransactionHistoryResponse getWalletTransactionHistory(Long walletId) {

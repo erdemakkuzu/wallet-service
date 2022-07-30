@@ -5,10 +5,7 @@ import com.leovegas.walletservice.entity.Transaction;
 import com.leovegas.walletservice.entity.Wallet;
 import com.leovegas.walletservice.model.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MapperUtils {
 
@@ -82,5 +79,31 @@ public class MapperUtils {
         transactionResponse.setDate(transaction.getDate());
         transactionResponse.setNote(transaction.getNote());
         return transactionResponse;
+    }
+
+    public static Transaction mapToTransactionEntity(PerformTransactionRequest performTransactionRequest,
+                                                     Wallet wallet,
+                                                     TransactionType transactionType) {
+        Transaction transaction = new Transaction();
+        transaction.setCurrency(performTransactionRequest.getCurrency());
+        transaction.setAmount(performTransactionRequest.getAmount());
+        transaction.setDate(new Date());
+        transaction.setWallet(wallet);
+        transaction.setHashId(performTransactionRequest.getHashId());
+        transaction.setNote(performTransactionRequest.getNote());
+        transaction.setType(transactionType.getTransactionType());
+
+        return transaction;
+    }
+
+    public static PerformTransactionResponse toPerformTransactionResponse(Wallet wallet,
+                                                                          PerformTransactionRequest performTransactionRequest) {
+        PerformTransactionResponse performTransactionResponse = new PerformTransactionResponse();
+        performTransactionResponse.setWalletId(wallet.getId());
+        performTransactionResponse.setCurrentBalance(wallet.getBalance());
+        performTransactionResponse.setCurrency(performTransactionRequest.getCurrency());
+        performTransactionResponse.setHashId(performTransactionRequest.getHashId());
+
+        return performTransactionResponse;
     }
 }

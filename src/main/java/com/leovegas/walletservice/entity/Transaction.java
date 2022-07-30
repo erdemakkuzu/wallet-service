@@ -18,7 +18,7 @@ public class Transaction {
     @Column(name = "hash_id", unique = true)
     private String hashId;
 
-    @Column(name="ammount")
+    @Column(name = "ammount")
     private Double amount;
 
     @Column(name = "type")

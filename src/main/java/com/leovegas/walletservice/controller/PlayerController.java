@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/player")
+@RequestMapping("/api/players")
 public class PlayerController {
 
     private final PlayerService playerService;
@@ -31,7 +31,7 @@ public class PlayerController {
         return ResponseEntity.ok(playerService.getPlayer(name));
     }
 
-    @GetMapping(value = "/players", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = Operations.GET_PLAYERS)
     public ResponseEntity<List<GetPlayerResponse>> getPlayers() {
         return ResponseEntity.ok(playerService.getPlayers());
