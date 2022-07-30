@@ -1,6 +1,6 @@
 package com.leovegas.walletservice.util;
 
-import com.leovegas.walletservice.constans.FieldKeys;
+import com.leovegas.walletservice.constant.FieldKeys;
 import com.leovegas.walletservice.exception.InvalidCurrencyException;
 import com.leovegas.walletservice.exception.NegativeBalanceException;
 import com.leovegas.walletservice.exception.NullFieldException;

@@ -1,6 +1,6 @@
 package com.leovegas.walletservice.util;
 
-import com.leovegas.walletservice.constans.FieldKeys;
+import com.leovegas.walletservice.constant.FieldKeys;
 import com.leovegas.walletservice.exception.NullFieldException;
 import com.leovegas.walletservice.exception.NullPlayerNameException;
 import com.leovegas.walletservice.model.CreatePlayerRequest;

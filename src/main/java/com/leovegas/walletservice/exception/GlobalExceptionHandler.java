@@ -1,6 +1,6 @@
 package com.leovegas.walletservice.exception;
 
-import com.leovegas.walletservice.constans.FieldKeys;
+import com.leovegas.walletservice.constant.FieldKeys;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
