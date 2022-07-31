@@ -30,8 +30,8 @@ public class WalletUtils {
     }
 
     public static void validatePerformTransactionRequest(PerformTransactionRequest performTransactionRequest) {
-        if (performTransactionRequest.getAmount() < 0) {
-            logger.error("Requested amount is a negative. Amount : " + performTransactionRequest.getAmount());
+        if (performTransactionRequest.getAmount() <= 0) {
+            logger.error("Requested amount must be bigger than 0. Amount : " + performTransactionRequest.getAmount());
             throw new NegativeBalanceException(performTransactionRequest.getAmount());
         }
 

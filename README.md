@@ -10,6 +10,7 @@ This simple microservice project is designed to provide APIs that other microser
     * H2 Database
     * JUnit
     * Mockito
+    * Slf4j
     * SwaggerUI
     * Docker
 
@@ -388,5 +389,9 @@ Success response example (Http Status = 200 - OK):
 }
 ```
 
-## Improvements for future
+## Improvements for the future
+
+###1. sdsds
+dasdasd
+###2. dsadasdas
 

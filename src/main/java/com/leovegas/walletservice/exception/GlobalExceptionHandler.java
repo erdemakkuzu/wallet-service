@@ -24,7 +24,6 @@ public class GlobalExceptionHandler {
         errorDetails.setField(nullFieldException.getFieldName());
 
         return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
-
     }
 
     @ExceptionHandler(PlayerAlreadyExistsException.class)
@@ -58,7 +57,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(NegativeBalanceException.class)
     public ResponseEntity<?> handleNegativeBalanceException(NegativeBalanceException negativeBalanceException) {
         ErrorDetails errorDetails = new ErrorDetails();
-        errorDetails.setErrorCode(ErrorMessageKeys.NEGATIVE_BALANCE_NOT_ACCEPTED);
+        errorDetails.setErrorCode(ErrorMessageKeys.REQUEST_AMOUNT_MUST_BE_MORE_THAN_0);
         errorDetails.setValue(negativeBalanceException.getBalance().toString());
 
         return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
