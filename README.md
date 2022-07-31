@@ -461,3 +461,6 @@ will inform us about potential defects in the application.
 
 ### 14. Pagination
 * API responses can be paginated. This approach will come in handy when dealing with very large data.
+
+### 15. Javadoc
+* Javadocs can be created for all the methods.
