@@ -425,9 +425,9 @@ We can replace our Double data types (amount, balance etc.) with BigDecimal in t
 ### 10. Cross-Currency support
 * Currently we don't support a transaction attempt which has different currency type in a target wallet.
 To implement this feature, we can store currency rate information in another table and update it daily.
-  When we recieve a cross-currency transaction attempt, we will be able to convert currencies and perform the transaction.
+  When we recieve a cross-currency transaction attempt, we will be able to convert between currencies and perform the transaction.
 ### 11. Testing
-* BDD testing tools such as **Cucumber** can be used
+* BDD testing tools such as **Cucumber** can be used.
 * Creating Jenkins jobs which runs **Unit Tests** and **Cucumber Tests** when a new commit merged, 
 will inform us about potential defects in the application.
 ### 11. Storing HTTP Requests and Responses 
