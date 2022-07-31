@@ -11,4 +11,5 @@ public class ErrorMessageKeys {
     public static final String CURRENCY_MISMATCH = "transaction_and_wallet_currency_mismatch";
     public static final String NOT_ENOUGH_BALANCE = "not_enough_balance";
     public static final String WALLET_NOT_FOUND = "wallet_not_found";
+    public static final String INTERNAL_SERVER_ERROR = "internal_server_error";
 }

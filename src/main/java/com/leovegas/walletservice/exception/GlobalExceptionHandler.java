@@ -99,4 +99,12 @@ public class GlobalExceptionHandler {
 
         return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<?> handleRuntimeException() {
+        ErrorDetails errorDetails = new ErrorDetails();
+        errorDetails.setErrorCode(ErrorMessageKeys.INTERNAL_SERVER_ERROR);
+
+        return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }
