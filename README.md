@@ -108,7 +108,7 @@ Fail response example (Http Staus = 409 - Conflict):
 
 Note that : This API does not create wallet. **It only creates the player account**.
 
-**2. GET player /api/players/{playerName}**
+**2. GET player /api/players/{name}**
 * You can retrieve information of a specific player by giving the name of the player (player name) as a path variable.
 
 Success response example (Http Status = 200 - OK - No wallet (New user)):
