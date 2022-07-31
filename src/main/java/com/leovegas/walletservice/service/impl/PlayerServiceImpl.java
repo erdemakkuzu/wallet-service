@@ -26,8 +26,8 @@ public class PlayerServiceImpl implements PlayerService {
 
     private final Logger logger = LoggerFactory.getLogger(PlayerServiceImpl.class);
 
-    PlayerRepository playerRepository;
-    WalletRepository walletRepository;
+    private final PlayerRepository playerRepository;
+    private final WalletRepository walletRepository;
 
     @Autowired
     PlayerServiceImpl(PlayerRepository playerRepository,

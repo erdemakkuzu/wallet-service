@@ -14,7 +14,7 @@ public class GlobalExceptionHandler {
         ErrorDetails errorDetails = new ErrorDetails();
         errorDetails.setErrorCode(ErrorMessageKeys.PLAYER_NOT_FOUND);
         errorDetails.setValue(playerNotFoundException.getPlayerName());
-        return new ResponseEntity(errorDetails, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(NullFieldException.class)
@@ -23,7 +23,7 @@ public class GlobalExceptionHandler {
         errorDetails.setErrorCode(ErrorMessageKeys.FIELD_CANT_BE_NULL);
         errorDetails.setField(nullFieldException.getFieldName());
 
-        return new ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
 
     }
 
@@ -34,7 +34,7 @@ public class GlobalExceptionHandler {
         errorDetails.setValue(playerAlreadyExistsException.getPlayerName());
         errorDetails.setField(FieldKeys.PLAYER_NAME);
 
-        return new ResponseEntity(errorDetails, HttpStatus.CONFLICT);
+        return new ResponseEntity<>(errorDetails, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(NullPlayerNameException.class)
@@ -43,7 +43,7 @@ public class GlobalExceptionHandler {
         errorDetails.setErrorCode(ErrorMessageKeys.PLAYER_NAME_CANT_BE_NULL);
         errorDetails.setValue(nullPlayerNameException.getPlayerName());
 
-        return new ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(InvalidCurrencyException.class)
@@ -52,7 +52,7 @@ public class GlobalExceptionHandler {
         errorDetails.setErrorCode(ErrorMessageKeys.INVALID_CURRENCY);
         errorDetails.setValue(invalidCurrencyException.getInvalidCurrency());
 
-        return new ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(NegativeBalanceException.class)
@@ -61,7 +61,7 @@ public class GlobalExceptionHandler {
         errorDetails.setErrorCode(ErrorMessageKeys.NEGATIVE_BALANCE_NOT_ACCEPTED);
         errorDetails.setValue(negativeBalanceException.getBalance().toString());
 
-        return new ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(NonUniqueTransactionHashIdException.class)
@@ -70,7 +70,7 @@ public class GlobalExceptionHandler {
         errorDetails.setErrorCode(ErrorMessageKeys.NON_UNIQUE_TRANSACTION_HASH_ID);
         errorDetails.setValue(nonUniqueTransactionHashIdException.getTransactionHashId());
 
-        return new ResponseEntity(errorDetails, HttpStatus.CONFLICT);
+        return new ResponseEntity<>(errorDetails, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(CurrencyMisMatchException.class)
@@ -79,7 +79,7 @@ public class GlobalExceptionHandler {
         errorDetails.setErrorCode(ErrorMessageKeys.CURRENCY_MISMATCH);
         errorDetails.setValue(currencyMisMatchException.getMismatchCurrency());
 
-        return new ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(NotEnoughBalanceException.class)
@@ -88,7 +88,7 @@ public class GlobalExceptionHandler {
         errorDetails.setErrorCode(ErrorMessageKeys.NOT_ENOUGH_BALANCE);
         errorDetails.setDetails("Wallet balance : " + notEnoughBalanceException.getWalletBalance());
 
-        return new ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(WalletNotFoundException.class)
@@ -98,6 +98,6 @@ public class GlobalExceptionHandler {
         errorDetails.setValue(walletNotFoundException.getWalletId().toString());
         errorDetails.setField(FieldKeys.WALLET_ID);
 
-        return new ResponseEntity(errorDetails, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
     }
 }

@@ -387,3 +387,6 @@ Success response example (Http Status = 200 - OK):
   ]
 }
 ```
+
+## Improvements for future
+

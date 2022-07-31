@@ -27,9 +27,9 @@ public class WalletServiceImpl implements WalletService {
 
     private final Logger logger = LoggerFactory.getLogger(WalletServiceImpl.class);
 
-    WalletRepository walletRepository;
-    PlayerRepository playerRepository;
-    TransactionRepository transactionRepository;
+    private final WalletRepository walletRepository;
+    private final PlayerRepository playerRepository;
+    private final TransactionRepository transactionRepository;
 
     @Autowired
     WalletServiceImpl(WalletRepository walletRepository,
