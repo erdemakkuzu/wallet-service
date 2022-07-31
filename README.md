@@ -244,7 +244,7 @@ Request body example:
 }
 ```
 
-Success response example (Http Status = 200 - OK):
+Success response example (Http Status = 201 - CREATED):
 ```json
 {
   "id": 5,
