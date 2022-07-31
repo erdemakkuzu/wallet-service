@@ -11,8 +11,8 @@ import lombok.Data;
 public class CreatePlayerResponse {
 
     @JsonProperty("player_name")
-    private String player_name;
+    private String playerName;
 
     @JsonProperty("player_id")
-    private Long player_id;
+    private Long playerId;
 }

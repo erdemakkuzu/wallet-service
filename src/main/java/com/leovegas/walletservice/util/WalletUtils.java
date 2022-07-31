@@ -21,7 +21,8 @@ public class WalletUtils {
             logger.error("Requested balance is a negative. Balance : " + createWalletRequest.getBalance());
             throw new NegativeBalanceException(createWalletRequest.getBalance());
         }
-        if (createWalletRequest.getName().isEmpty() || createWalletRequest.getName().isBlank()) {
+        if (createWalletRequest.getName() == null ||
+                createWalletRequest.getName().isEmpty() || createWalletRequest.getName().isBlank()) {
             logger.error("Field is null :" + FieldKeys.WALLET_NAME);
             throw new NullFieldException(FieldKeys.WALLET_NAME);
         }
@@ -35,7 +36,9 @@ public class WalletUtils {
             throw new NegativeBalanceException(performTransactionRequest.getAmount());
         }
 
-        if (performTransactionRequest.getHashId().isEmpty() || performTransactionRequest.getHashId().isBlank()) {
+        if (performTransactionRequest.getHashId() == null ||
+                performTransactionRequest.getHashId().isEmpty() ||
+                performTransactionRequest.getHashId().isBlank()) {
             logger.error("Field is null :" + FieldKeys.HASH_ID);
             throw new NullFieldException(FieldKeys.HASH_ID);
         }

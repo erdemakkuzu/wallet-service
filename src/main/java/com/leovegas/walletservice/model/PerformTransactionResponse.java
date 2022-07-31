@@ -10,7 +10,7 @@ public class PerformTransactionResponse {
     private Long walletId;
 
     @JsonProperty("transaction_hash_id")
-    private String transaction_hash_id;
+    private String transactionHashId;
 
     @JsonProperty("currency")
     private String currency;

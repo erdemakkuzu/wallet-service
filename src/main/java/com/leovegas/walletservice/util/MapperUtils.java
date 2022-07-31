@@ -102,7 +102,7 @@ public class MapperUtils {
         performTransactionResponse.setWalletId(wallet.getId());
         performTransactionResponse.setCurrentBalance(wallet.getBalance());
         performTransactionResponse.setCurrency(performTransactionRequest.getCurrency());
-        performTransactionResponse.setTransaction_hash_id(performTransactionRequest.getHashId());
+        performTransactionResponse.setTransactionHashId(performTransactionRequest.getHashId());
 
         return performTransactionResponse;
     }
