@@ -54,6 +54,10 @@ http://localhost:8080/swagger-ui.html
 
 ![Db Scema](/src/main/resources/walletServiceDbSchema.png "Db schema")
 
+H2 in memory database was used in this project.
+
+Console URL = http://localhost:8080/h2/
+
 You can examine the database structure and tables of the project from the diagram above.
 
 To keep things simple, the number of tables is limited to 3.
