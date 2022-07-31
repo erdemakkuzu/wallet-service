@@ -391,7 +391,45 @@ Success response example (Http Status = 200 - OK):
 
 ## Improvements for the future
 
-###1. sdsds
-dasdasd
-###2. dsadasdas
-
+###1. Database 
+* Relational databases like PostgreSQL, MySql or Oracle Db can be used instead of H2 In memory database. It would be a healthier approach to write and read data to disk.
+###2. Authorization
+* JWT token can be used for authorization.  If the Bearer token in the header is not valid, the request will be denied. Currently this validation logic is skipped.
+###3. Message Broker
+* For transactions we can use a message broker such as Kafka. Transaction requests can be queued and processed by consumers subscribed to it with FIFO logic. This approach will make our application more scalable and fault tolerat.
+###4.  Caching
+* For some structures that don't change frequently (such as currencies) an inmemory caching library like **Cache2k** can be used. Once the application is up, we will inflate the cache and for each request, instead of going to db we will retrieve the data from cache.
+* One more endpoint will be created for refresh cache operation. When we add a new value to db (for currency) we will trigger this endpoint. 
+* Also we can store some of the GET Responses (Get Player response) in cache for a short period of time (1 minute) . Key will be {playerId} and value will be GetPlayerResponse object. We won't need to query the database all the time for **frequent requests in a short period of time with the same playerId**.
+###5. Load Balancing and Hashing
+* According to traffic we recieve, we may want to increase or decrease the running instances of wallet-service.
+For this case, we would use load balancer such as NGINIX.
+* To redicret requets to correct insances, we should think about hashing strategy (**consistent, round robin, rendezvous**).  
+* To redirect users to correct instances, we should generate the hash with accurate instances. **(such as player name and instance name etc.)** 
+With this strategy, we will use caches of the wallet-service instances in a efficient way even if we decrease or increase the number of instances.
+###6. Logging and metrics
+* To track the status of the application, we can use logging tools such as NewRelic. 
+* By using the metric registries we can recieve detailed information about caches etc.
+###7. Display Failed Transactions
+* We can think of a structre that holds status of each transaction attempt. With this feature
+when we use **GET /api/wallet/{walletNumber}/transaction-history** API, it will retrieve extra information 
+  such as: 
+   * status : "SUCCESS" OR "FAILED"
+   * fail_reason : null OR "non_unique_transaction_id"
+###8. Transaction Hash Id Generation
+* Currently we don't validate hash_id format for transaction. In future it can be obtained
+from another microservice in **UUID format**. Then we will validate if it's unique or not.
+###9. Usage of BigDecimal instead of Double
+* Using BigDecimal data type is safer way than performing operations with Double data type.
+We can replace our Double data types (amount, balance etc.) with BigDecimal in the future.
+###10. Cross-Currency support
+* Currently we don't support a transaction attempt which has different currency type in a target wallet.
+To implement this feature, we can store currency rate information in another table and update it daily.
+  When we recieve a cross-currency transaction attempt, we will be able to convert currencies and perform the transaction.
+###11. Testing
+* BDD testing tools such as **Cucumber** can be used
+* Creating Jenkins jobs which runs **Unit Tests** and **Cucumber Tests** when a new commit merged, 
+will inform us about potential defects in the application.
+###11. Storing HTTP Requests and Responses 
+* For each requets we recieve, we can store the request and response in our storage as Json Blob.
+* It will be easier to keep track of past requests.
