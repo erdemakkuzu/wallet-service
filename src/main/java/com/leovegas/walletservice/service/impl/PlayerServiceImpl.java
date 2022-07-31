@@ -7,7 +7,6 @@ import com.leovegas.walletservice.model.CreatePlayerRequest;
 import com.leovegas.walletservice.model.CreatePlayerResponse;
 import com.leovegas.walletservice.model.GetPlayerResponse;
 import com.leovegas.walletservice.repository.PlayerRepository;
-import com.leovegas.walletservice.repository.WalletRepository;
 import com.leovegas.walletservice.service.PlayerService;
 import com.leovegas.walletservice.util.MapperUtils;
 import com.leovegas.walletservice.util.PlayerUtils;
@@ -27,13 +26,10 @@ public class PlayerServiceImpl implements PlayerService {
     private final Logger logger = LoggerFactory.getLogger(PlayerServiceImpl.class);
 
     private final PlayerRepository playerRepository;
-    private final WalletRepository walletRepository;
 
     @Autowired
-    PlayerServiceImpl(PlayerRepository playerRepository,
-                      WalletRepository walletRepository) {
+    PlayerServiceImpl(PlayerRepository playerRepository) {
         this.playerRepository = playerRepository;
-        this.walletRepository = walletRepository;
     }
 
     public GetPlayerResponse getPlayer(String name) {
