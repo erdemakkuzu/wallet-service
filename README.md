@@ -63,8 +63,8 @@ Relationships between tables:
 2. **One wallet** can have **many transactions.**
 
 ## Endpoints
-Below you can find information about the APIs in the application.
-Also to reach swagger documenation of the APIs, visit the link = http://localhost:8080/swagger-ui.html 
+In this chapter you can find detailed information about the APIs.
+For swagger documenation of the APIs, visit the link = http://localhost:8080/swagger-ui.html 
 
 **1. POST player /api/players**
 * You can create a new player with this endpoint
@@ -92,7 +92,7 @@ Success response example (Http Status = 201 - Created):
 }
 ```
 
-Fail response example (Http Staus = 400 - Bad Request):
+Fail response example (Http Staus = 409 - Conflict):
 ```json
 {
   "error_code": "player_already_exists",
@@ -288,7 +288,7 @@ Success response example (Http Status = 201 - Created):
 }
 ```
 
-Fail response example (Http Staus = 400 - Bad Request):
+Fail response example (Http Status = 409 - Conflict):
 ```json
 {
   "error_code": "non_unique_transaction_hash_id",
@@ -296,7 +296,7 @@ Fail response example (Http Staus = 400 - Bad Request):
 }
 ```
 
-Fail response example (Http Staus = 400 - Bad Request):
+Fail response example (Http Status = 400 - Bad Request):
 ```json
 {
   "error_code": "transaction_and_wallet_currency_mismatch",

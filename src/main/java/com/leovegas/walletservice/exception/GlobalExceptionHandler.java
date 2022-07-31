@@ -34,7 +34,7 @@ public class GlobalExceptionHandler {
         errorDetails.setValue(playerAlreadyExistsException.getPlayerName());
         errorDetails.setField(FieldKeys.PLAYER_NAME);
 
-        return new ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity(errorDetails, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(NullPlayerNameException.class)
@@ -70,7 +70,7 @@ public class GlobalExceptionHandler {
         errorDetails.setErrorCode(ErrorMessageKeys.NON_UNIQUE_TRANSACTION_HASH_ID);
         errorDetails.setValue(nonUniqueTransactionHashIdException.getTransactionHashId());
 
-        return new ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity(errorDetails, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(CurrencyMisMatchException.class)
