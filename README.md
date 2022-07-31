@@ -411,6 +411,7 @@ Success response example (Http Status = 200 - OK):
 
 ### 1. Database 
 * Relational databases like PostgreSQL, MySql or Oracle Db can be used instead of H2 In memory database. It would be a healthier approach to write and read data to disk.
+* Index strategy can be determined for tables. Although it takes up additional space, querying will become more efficient when the data becomes very large.
 ### 2. Authorization
 * JWT token can be used for authorization.  If the Bearer token in the header is not valid, the request will be denied. Currently this validation logic is skipped.
 ### 3. Message Broker
