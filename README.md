@@ -58,6 +58,14 @@ http://localhost:8080/swagger-ui.html
 H2 in memory database was used in this project.
 
 Console URL = http://localhost:8080/h2/
+* username = sa
+* password = password
+* data source url = jdbc:h2:file:./data/walletDb
+
+There is dummy data inside that you can play with after you get the project up and running.
+Data is not lost when you stop and restart the project. It persists data under the folder of
+*/data/*
+
 
 You can examine the database structure and tables of the project from the diagram above.
 
@@ -70,6 +78,14 @@ Relationships between tables:
 ## Endpoints
 In this chapter you can find detailed information about the APIs.
 For swagger documenation of the APIs, visit the link = http://localhost:8080/swagger-ui.html 
+
+Here is some postman collection that includes sample requets. You can download and import with postman:
+
+https://drive.google.com/file/d/10bUfTMPCYAp5g5wz4zN79rAP_Yqmdg22/view
+
+
+
+
 
 **1. POST player /api/players**
 * You can create a new player with this endpoint
@@ -243,6 +259,8 @@ Request body example:
   "currency" : "USD"
 }
 ```
+
+* It accepts only supported currencies (SEK, USD, TL, EU)
 
 Success response example (Http Status = 201 - CREATED):
 ```json
@@ -424,12 +442,22 @@ from another microservice in **UUID format**. Then we will validate if it's uniq
 We can replace our Double data types (amount, balance etc.) with BigDecimal in the future.
 ### 10. Cross-Currency support
 * Currently we don't support a transaction attempt which has different currency type in a target wallet.
-To implement this feature, we can store currency rate information in another table and update it daily.
+To implement this feature, we can store currency rate information in another table and update it daily. 
   When we recieve a cross-currency transaction attempt, we will be able to convert between currencies and perform the transaction.
+  
+* Currency values are currently stored in an enum. A more detailed approach can be considered.
+  **Current valid currencies = EU, USD, SEK, TL**
 ### 11. Testing
 * BDD testing tools such as **Cucumber** can be used.
 * Creating Jenkins jobs which runs **Unit Tests** and **Cucumber Tests** when a new commit merged, 
 will inform us about potential defects in the application.
-### 11. Storing HTTP Requests and Responses 
+### 12. Storing HTTP Requests and Responses 
 * For each requets we recieve, we can store the request and response in our storage as Json Blob.
 * It will be easier to keep track of past requests.
+
+### 13. Handle unvalid types in requets
+* For example if user enters String value instead of long value, it shows **internal service excepion**
+. More detailed error code can be shown to user.
+
+### 14. Pagination
+* API responses can be paginated. This approach will come in handy when dealing with very large data.
