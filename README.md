@@ -122,7 +122,7 @@ Fail response example (Http Staus = 409 - Conflict):
 }
 ```
 
-Note that : This API does not create wallet. **It only creates the player account**.
+Note : This API does not create wallet. **It only creates the player account**.
 
 **2. GET player /api/players/{name}**
 * You can retrieve information of a specific player by giving the name of the player (player name) as a path variable.
