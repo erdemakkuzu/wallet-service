@@ -465,3 +465,7 @@ will inform us about potential defects in the application.
 
 ### 15. Javadoc
 * Javadocs can be created for all the methods.
+
+### 16. Usage of mapping libraries
+
+* Mapping tools can be used to map objects (from entity to dtos or reverse) such as Orika Mapper. 
